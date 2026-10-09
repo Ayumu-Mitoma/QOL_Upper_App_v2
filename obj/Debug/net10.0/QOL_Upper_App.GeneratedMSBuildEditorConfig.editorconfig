@@ -1,0 +1,58 @@
+is_global = true
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = 
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.VerifyReferenceTrimCompatibility = 
+build_property.VerifyReferenceAotCompatibility = 
+build_property.TargetFramework = net10.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EntryPointFilePath = 
+build_property._SupportedPlatformList = browser
+build_property.RootNamespace = QOL_Upper_App
+build_property.RootNamespace = QOL_Upper_App
+build_property.ProjectDir = C:\Users\三苫歩夢\source\repos\QOL_Upper_App\QOL_Upper_App\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = false
+build_property.RazorLangVersion = 10.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\三苫歩夢\source\repos\QOL_Upper_App\QOL_Upper_App
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/三苫歩夢/source/repos/QOL_Upper_App/QOL_Upper_App/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/三苫歩夢/source/repos/QOL_Upper_App/QOL_Upper_App/Pages/NotFound.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTm90Rm91bmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/三苫歩夢/source/repos/QOL_Upper_App/QOL_Upper_App/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/三苫歩夢/source/repos/QOL_Upper_App/QOL_Upper_App/Layout/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-jm5z5a4sk4
+
+[C:/Users/三苫歩夢/source/repos/QOL_Upper_App/QOL_Upper_App/Layout/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = TGF5b3V0XE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-29bui9l3dg
+
+[C:/Users/三苫歩夢/source/repos/QOL_Upper_App/QOL_Upper_App/Pages/AccountBook.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudEJvb2sucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-g3xjiz4t6j
+
+[C:/Users/三苫歩夢/source/repos/QOL_Upper_App/QOL_Upper_App/Pages/Setting.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-jks5r4e189
