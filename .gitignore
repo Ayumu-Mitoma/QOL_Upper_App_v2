@@ -1,0 +1,9 @@
+# Visual Studio のキャッシュや一時ファイル
+.vs/
+bin/
+obj/
+
+# その他不要な生成物
+*.user
+*.userosscache
+*.sln.docstates

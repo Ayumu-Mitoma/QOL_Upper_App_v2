@@ -1,6 +1,7 @@
 ﻿@page "/"
 @page "/account-book"
 @inject IJSRuntime JS
+@inject QOL_Upper_App.Services.FirebaseService Firebase
 
 <PageTitle>家計簿 - QOL爆上げ大作戦</PageTitle>
 
@@ -455,27 +456,26 @@ else if (activeModalMode == "固定費")
         await SaveDataToLocalStorage();
     }
 
-    // LocalStorage保存・読み込み処理
+    // LocalStorage から Firebase への保存・読み込み処理に変更
     private async Task SaveDataToLocalStorage()
     {
-        await JS.InvokeVoidAsync("localStorage.setItem", "expenseItems", System.Text.Json.JsonSerializer.Serialize(expenseItems));
-        await JS.InvokeVoidAsync("localStorage.setItem", "incomeItems", System.Text.Json.JsonSerializer.Serialize(incomeItems));
+        // 支出データ
+        await Firebase.SaveDataAsync("account_data", "expenses", expenseItems);
+        // 収入データ
+        await Firebase.SaveDataAsync("account_data", "incomes", incomeItems);
     }
 
     private async Task LoadDataFromLocalStorage()
     {
         try
         {
-            // 支出・収入データ読み込み
-            var expenseJson = await JS.InvokeAsync<string>("localStorage.getItem", "expenseItems");
-            if (!string.IsNullOrEmpty(expenseJson))
-                expenseItems = System.Text.Json.JsonSerializer.Deserialize<List<ExpenseItem>>(expenseJson) ?? expenseItems;
+            var loadedExpenses = await Firebase.GetDataAsync<List<ExpenseItem>>("account_data", "expenses");
+            if (loadedExpenses != null) expenseItems = loadedExpenses;
 
-            var incomeJson = await JS.InvokeAsync<string>("localStorage.getItem", "incomeItems");
-            if (!string.IsNullOrEmpty(incomeJson))
-                incomeItems = System.Text.Json.JsonSerializer.Deserialize<List<IncomeItem>>(incomeJson) ?? incomeItems;
+            var loadedIncomes = await Firebase.GetDataAsync<List<IncomeItem>>("account_data", "incomes");
+            if (loadedIncomes != null) incomeItems = loadedIncomes;
 
-            // カテゴリ設定読み込み（設定画面との連動）
+            // カテゴリ設定は今まで通りLocalStorageから取得
             var dailyJson = await JS.InvokeAsync<string>("localStorage.getItem", "dailyCategories");
             if (!string.IsNullOrEmpty(dailyJson))
                 dailyCategories = System.Text.Json.JsonSerializer.Deserialize<List<string>>(dailyJson) ?? dailyCategories;
@@ -490,6 +490,7 @@ else if (activeModalMode == "固定費")
         }
         catch { }
     }
+
 
     private string GetHolidayName(DateTime date)
     {

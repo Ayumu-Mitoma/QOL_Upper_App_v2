@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QOL_Upper_App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2046bff6672372b8a48f366d03ff670cb8ee5d9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0e79cad5d284c3c0a27ec1b2e07f88aba02f9042")]
 [assembly: System.Reflection.AssemblyProductAttribute("QOL_Upper_App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QOL_Upper_App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
