@@ -1,36 +1,48 @@
-name: Deploy to GitHub Pages
+name: Deploy Blazor WebAssembly to GitHub Pages
 
 on:
   push:
-    branches: [ main, master ] # mainでもmasterでも対応
+    branches: [ main ] # リモートのブランチ名が master の場合は master に変更してね
 
 permissions:
   contents: read
   pages: write
   id-token: write
-  
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: '8.0.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x' # net10.0 を使用しているため
 
-    - name: Publish Blazor WebAssembly
-      run: dotnet publish -c Release -o release
+      - name: Publish App
+        run: dotnet publish QOL_Upper_App.csproj -c Release -o release --nologo
 
-    - name: Copy index.html to 404.html
-      run: cp release/wwwroot/index.html release/wwwroot/404.html
+      - name: Add .nojekyll file
+        run: touch release/wwwroot/.nojekyll
 
-    - name: Add .nojekyll file
-      run: touch release/wwwroot/.nojekyll
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: release/wwwroot
 
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: release/wwwroot
-        branch: gh-pages
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
