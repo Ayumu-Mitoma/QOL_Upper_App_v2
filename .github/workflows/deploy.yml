@@ -2,7 +2,7 @@ name: Deploy Blazor WebAssembly to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # ブランチ名が master の場合は master に変更
+    branches: [ main, master ] # main でも master でも動くように設定
 
 permissions:
   contents: read
@@ -25,19 +25,19 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      # 出力先を ./output に明示指定
+      # プロジェクト全体を release/wwwroot 直下に直接出力
       - name: Publish App
-        run: dotnet publish QOL_Upper_App.csproj -c Release -o output --nologo
+        run: dotnet publish -c Release -o release
 
-      # Jekyll処理を無効化するファイルを wwwroot 内に作成
+      # Jekyllによる _ フォルダ無視を防止
       - name: Add .nojekyll file
-        run: touch output/wwwroot/.nojekyll
+        run: touch release/wwwroot/.nojekyll
 
-      # output/wwwroot の中身だけをデプロイ対象としてアップロード
+      # release/wwwroot の中身だけをデプロイ対象にする
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: output/wwwroot
+          path: release/wwwroot
 
   deploy:
     needs: build
