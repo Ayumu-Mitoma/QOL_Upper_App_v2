@@ -7,8 +7,11 @@
     <title>QOL Upper App</title>
 
     <script>
-                var path = window.location.hostname.includes('github.io') ? '/QOL_Upper_App_v2/' : '/';
-                document.write('<base href="' + path + '" />');
+        var path = window.location.pathname;
+        if (!path.endsWith('/')) {
+            path = path.substring(0, path.lastIndexOf('/') + 1);
+        }
+        document.write('<base href="' + path + '" />');
     </script>
 
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
