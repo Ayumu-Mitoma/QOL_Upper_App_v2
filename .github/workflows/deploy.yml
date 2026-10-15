@@ -25,19 +25,20 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      # ビルド成果物を release ディレクトリに出力
+      # 1. dotnet publish で publish フォルダに成果物を出力
+      # （内部に publish/wwwroot が生成され、そこに _framework や css が全部入る）
       - name: Publish App
-        run: dotnet publish -c Release -o release
+        run: dotnet publish -c Release -o publish
 
-      # Jekyll無視ファイルを生成（_framework などのハイドレーション防止）
-      - name: Add .nojekyll file
-        run: touch release/wwwroot/.nojekyll
+      # 2. GitHub Pagesが _ 始まりのフォルダ (_framework) を消さないように .nojekyll を配置
+      - name: Create .nojekyll
+        run: touch publish/wwwroot/.nojekyll
 
-      # release/wwwroot の【中身】を正しくルートとしてアップロード
+      # 3. publish/wwwroot の【中身】だけを抽出して GitHub Pages に渡す
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: release/wwwroot/
+          path: publish/wwwroot
 
   deploy:
     needs: build
