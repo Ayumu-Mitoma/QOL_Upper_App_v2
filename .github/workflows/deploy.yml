@@ -29,7 +29,7 @@ jobs:
       # （内部に publish/wwwroot が生成され、そこに _framework や css が全部入る）
       # プロジェクトファイルを明示指定して publish 実行（-o オプションが正しく動作する）
       - name: Publish App
-        run: dotnet publish QOL_Upper_App_v2.csproj -c Release -o publish
+        run: dotnet publish QOL_Upper_App.csproj -c Release -o publish
 
       # 2. GitHub Pagesが _ 始まりのフォルダ (_framework) を消さないように .nojekyll を配置
       - name: Create .nojekyll
