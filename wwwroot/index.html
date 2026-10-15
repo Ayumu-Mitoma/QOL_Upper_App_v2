@@ -6,16 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QOL Upper App</title>
 
-    <script>
-    var isGitHubPages = window.location.hostname.includes('github.io');
-    var path = isGitHubPages ? '/QOL_Upper_App_v2/' : '/';
-    document.write('<base href="' + path + '" />');
-    </script>
+    <!-- JSによる動的生成をやめ、直接ベースパスを指定 -->
+    <base href="/QOL_Upper_App_v2/" />
 
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link href="QOL_Upper_App.styles.css" rel="stylesheet" />
+    <!-- _v2 を追加して修正 -->
+    <link href="QOL_Upper_App_v2.styles.css" rel="stylesheet" />
 </head>
 
 <body>
