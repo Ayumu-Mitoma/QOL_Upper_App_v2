@@ -25,17 +25,15 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
-      # 1. dotnet publish で publish フォルダに成果物を出力
-      # （内部に publish/wwwroot が生成され、そこに _framework や css が全部入る）
-      # プロジェクトファイルを明示指定して publish 実行（-o オプションが正しく動作する）
+      # ローカルで成功したコマンドと同じ設定でビルド
       - name: Publish App
         run: dotnet publish QOL_Upper_App.csproj -c Release -o publish
 
-      # 2. GitHub Pagesが _ 始まりのフォルダ (_framework) を消さないように .nojekyll を配置
+      # GitHub Pagesで _framework などのアンダースコアフォルダが無視されるのを防止
       - name: Create .nojekyll
         run: touch publish/wwwroot/.nojekyll
 
-      # 3. publish/wwwroot の【中身】だけを抽出して GitHub Pages に渡す
+      # 生成された wwwroot の【中身】をそのままルートとしてアップロード
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
